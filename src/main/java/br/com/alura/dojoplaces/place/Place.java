@@ -26,14 +26,20 @@ public class Place {
 
     }
 
-    public Place(Long id, String name, String code, String neighborhood, String city, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.id = id;
+    public Place(String name, String code, String neighborhood, String city, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.name = name;
         this.code = code;
         this.neighborhood = neighborhood;
         this.city = city;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public Place(PlaceCreateDTO place) {
+        this.name = place.name();
+        this.code = place.code();
+        this.neighborhood = place.neighborhood();
+        this.city = place.city();
     }
 
     public Long getId() {

@@ -9,18 +9,24 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("places")
 public class PlaceController {
 
-    private PlaceRepository placeRepository;
+    private final PlaceRepository placeRepository;
+
+    public PlaceController(PlaceRepository placeRepository) {
+        this.placeRepository = placeRepository;
+    }
 
     @PostMapping("/new")
-    public void createPlace(@Valid PlaceCreateDTO place) {
+    public String createPlace(@Valid PlaceCreateDTO place) {
 
-        System.out.println(place);
+        placeRepository.save(new Place(place));
+        return "redirect:/oi";
     }
 
     @GetMapping("/create")
     public String createPlaceForm(Model model, PlaceCreateDTO placeCreateDTO) {
 
         model.addAttribute("PlaceCreateDTO", placeCreateDTO);
+
         System.out.println(model);
         System.out.println(placeCreateDTO);
 
