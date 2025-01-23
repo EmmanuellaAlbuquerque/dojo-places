@@ -3,6 +3,7 @@ package br.com.alura.dojoplaces.place;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -15,21 +16,27 @@ public class PlaceController {
         this.placeRepository = placeRepository;
     }
 
-    @PostMapping("/new")
-    public String createPlace(@Valid PlaceCreateDTO place) {
+    @PostMapping("/create")
+    public String createPlace(@Valid PlaceCreateDTO place, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/PlaceCreateForm";
+        }
 
         placeRepository.save(new Place(place));
-        return "redirect:/oi";
+        return "redirect:/places";
     }
 
-    @GetMapping("/create")
+    @GetMapping("/new")
     public String createPlaceForm(Model model, PlaceCreateDTO placeCreateDTO) {
 
-        model.addAttribute("PlaceCreateDTO", placeCreateDTO);
-
-        System.out.println(model);
-        System.out.println(placeCreateDTO);
+        model.addAttribute("placeCreateDTO", placeCreateDTO);
 
         return "/PlaceCreateForm";
+    }
+
+    @GetMapping
+    public String placeList() {
+
+        return "/PlaceList";
     }
 }

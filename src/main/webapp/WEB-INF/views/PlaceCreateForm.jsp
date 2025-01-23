@@ -1,36 +1,40 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
+<head>
+    <title>Página de Cadastro de Local</title>
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+</head>
 
-<h1>Cadastre o Local</h1>
+<div class="place-form-container">
+    <h1>Cadastre o Local</h1>
 
-<br/>
-<br/>
+    <form:form modelAttribute="placeCreateDTO" method="post" action="/places/create" class="form-container">
 
-<form:form modelAttribute="PlaceCreateDTO" method="post" action="/places/new">
+        <label>Nome<span class="form-required">*</span>:</label>
+        <form:errors path="name" class="form-error" />
+        <form:input path="name" class="form-input" />
+        <br/>
 
-    <label>Nome:</label>
-    <form:input path="name"/>
-    <form:errors path="name" cssStyle="color: red"/>
-    <br/>
+        <label>Código<span class="form-required">*</span>:</label>
+        <form:errors path="code" class="form-error" />
+        <form:input path="code" class="form-input" />
+        <br/>
 
-    <label>Código:</label>
-    <form:input path="code"/>
-    <form:errors path="code" cssStyle="color: red"/>
-    <br/>
+        <label>Bairro<span class="form-required">*</span>:</label>
+        <form:errors path="neighborhood" class="form-error" />
+        <form:input path="neighborhood" class="form-input" />
+        <br/>
 
-    <label>Bairro:</label>
-    <form:input path="neighborhood"/>
-    <form:errors path="neighborhood" cssStyle="color: red"/>
-    <br/>
+        <label>Cidade<span class="form-required">*</span>:</label>
+        <form:errors path="city" class="form-error" />
+        <form:input path="city" class="form-input" />
+        <br/>
 
-    <label>Cidade:</label>
-    <form:input path="city"/>
-    <form:errors path="city" cssStyle="color: red"/>
-    <br/>
+        <form:button type="submit" class="form-button">CADASTRAR</form:button>
 
-    <form:button type="submit">Cadastrar</form:button>
-
-</form:form>
+    </form:form>
+</div>
 
 <script src="/assets/js/locais/buscarLocal.js"></script>
