@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("places")
 public class PlaceController {
@@ -35,8 +37,12 @@ public class PlaceController {
     }
 
     @GetMapping
-    public String placeList() {
+    public String placeList(Model model) {
+        List<Place> placesEntity = placeRepository.findAll();
+        List<PlaceListDTO> places = placesEntity.stream()
+                .map(place -> place.toDTO()).toList();
 
+        model.addAttribute("places", places);
         return "/PlaceList";
     }
 }

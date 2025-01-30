@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Place {
@@ -96,5 +97,16 @@ public class Place {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public PlaceListDTO toDTO() {
+        return new PlaceListDTO(
+                this.getName(),
+                this.getCode(),
+                this.getNeighborhood(),
+                this.getCity(),
+                this.getCreatedAt().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                "wip"
+        );
     }
 }
