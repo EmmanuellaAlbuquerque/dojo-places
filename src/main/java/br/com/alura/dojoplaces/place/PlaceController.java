@@ -38,8 +38,7 @@ public class PlaceController {
 
     @GetMapping
     public String placeList(Model model) {
-        List<Place> placesEntity = placeRepository.findAll();
-        List<PlaceListDTO> places = placesEntity.stream()
+        List<PlaceListDTO> places = placeRepository.findAll().stream()
                 .map(place -> place.toDTO()).toList();
 
         model.addAttribute("places", places);

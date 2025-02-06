@@ -17,8 +17,16 @@
 
     <c:if test="${not empty places}">
         <c:forEach items="${places}" var="place">
-            <li>
-                <h3>${place.name()}</h3>
+            <li style="list-style: none; padding: 1rem">
+                <p>
+                    <strong>Id</strong>:
+                        ${place.id()}
+                </p>
+
+                <a href="/places/edit/${place.id()}">
+                    <h3>${place.name()}</h3>
+                </a>
+
                 <p>
                     <strong>Código</strong>:
                     ${place.code()}
@@ -37,7 +45,7 @@
                 </p>
                 <p>
                     <strong>Data de Atualização</strong>:
-                        ${place.updatedAt()}
+                    ${place.updatedAt()}
                 </p>
             </li>
         </c:forEach>

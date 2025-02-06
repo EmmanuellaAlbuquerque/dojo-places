@@ -6,7 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import static br.com.alura.dojoplaces.utils.DateUtils.convertToDayMonthYear;
+import static br.com.alura.dojoplaces.utils.DateUtils.daysFromNow;
 
 @Entity
 public class Place {
@@ -101,12 +102,13 @@ public class Place {
 
     public PlaceListDTO toDTO() {
         return new PlaceListDTO(
-                this.getName(),
-                this.getCode(),
-                this.getNeighborhood(),
-                this.getCity(),
-                this.getCreatedAt().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-                "wip"
+                this.id,
+                this.name,
+                this.code,
+                this.neighborhood,
+                this.city,
+                convertToDayMonthYear(this.createdAt),
+                this.updatedAt != null ? daysFromNow(this.updatedAt) + " dias atrás" : "Ainda não foi atualizado"
         );
     }
 }
