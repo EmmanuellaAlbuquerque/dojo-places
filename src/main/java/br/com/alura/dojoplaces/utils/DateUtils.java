@@ -14,4 +14,17 @@ public class DateUtils {
     public static long daysFromNow(LocalDateTime datetime) {
         return datetime.until(LocalDateTime.now(), ChronoUnit.DAYS);
     }
+
+    public static String formattedDaysAgo(LocalDateTime datetime){
+        long daysAgo = DateUtils.daysFromNow(datetime);
+        String formattedDaysAgo = "";
+
+        switch ((int) daysAgo) {
+            case 0 -> formattedDaysAgo = "Hoje";
+            case 1 -> formattedDaysAgo = "Ontem";
+            default -> formattedDaysAgo = daysAgo + " dias atrás";
+        }
+
+        return formattedDaysAgo;
+    }
 }

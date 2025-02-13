@@ -1,10 +1,13 @@
 package br.com.alura.dojoplaces.place;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-public record PlaceCreateDTO(
+public record PlaceEditDTO(
+        @NotNull
+        Long id,
 
         @NotBlank(message = "O Nome é obrigatório")
         @Size(max = 100)
@@ -22,4 +25,14 @@ public record PlaceCreateDTO(
         @Size(max = 100)
         String city
 ) {
+
+    public static PlaceEditDTO fromModel(Place place) {
+        return new PlaceEditDTO(
+                place.getId(),
+                place.getName(),
+                place.getCode(),
+                place.getNeighborhood(),
+                place.getCity()
+        );
+    }
 }

@@ -15,8 +15,12 @@
 
     <h1>Todos os Locais</h1>
 
+    <a href="/places/new">Crie um novo Local</a>
+
     <c:if test="${not empty places}">
         <c:forEach items="${places}" var="place">
+            <hr/>
+
             <li style="list-style: none; padding: 1rem">
                 <p>
                     <strong>Id</strong>:

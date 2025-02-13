@@ -6,8 +6,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
-import static br.com.alura.dojoplaces.utils.DateUtils.convertToDayMonthYear;
-import static br.com.alura.dojoplaces.utils.DateUtils.daysFromNow;
 
 @Entity
 public class Place {
@@ -26,15 +24,6 @@ public class Place {
 
     public Place() {
 
-    }
-
-    public Place(String name, String code, String neighborhood, String city, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.name = name;
-        this.code = code;
-        this.neighborhood = neighborhood;
-        this.city = city;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     public Place(PlaceCreateDTO place) {
@@ -100,15 +89,24 @@ public class Place {
         this.updatedAt = updatedAt;
     }
 
-    public PlaceListDTO toDTO() {
-        return new PlaceListDTO(
-                this.id,
-                this.name,
-                this.code,
-                this.neighborhood,
-                this.city,
-                convertToDayMonthYear(this.createdAt),
-                this.updatedAt != null ? daysFromNow(this.updatedAt) + " dias atrás" : "Ainda não foi atualizado"
-        );
+    public void edit(PlaceEditDTO placeEditDTO) {
+        this.name = placeEditDTO.name();
+        this.code = placeEditDTO.code();
+        this.neighborhood = placeEditDTO.neighborhood();
+        this.city = placeEditDTO.city();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @Override
+    public String toString() {
+        return "Place{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ", neighborhood='" + neighborhood + '\'' +
+                ", city='" + city + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
     }
 }

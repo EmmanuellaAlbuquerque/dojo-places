@@ -1,7 +1,6 @@
 package br.com.alura.dojoplaces;
 
 import br.com.alura.dojoplaces.utils.DateUtils;
-//import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,12 +13,32 @@ import java.time.Month;
 public class DateUtilsTest {
 
     @Test
+    @DisplayName("Deve retornar a data formatada como hoje")
+    void shouldReturnFormattedDateAtAsToday() {
+        String formattedDate = DateUtils.formattedDaysAgo(LocalDateTime.now());
+        Assertions.assertThat(formattedDate).isEqualTo("Hoje");
+    }
+
+    @Test
+    @DisplayName("Deve retornar a data formatada como ontem")
+    void shouldReturnFormattedDateAtAsYesterday() {
+        String formattedDate = DateUtils.formattedDaysAgo(LocalDateTime.now().minusDays(1));
+        Assertions.assertThat(formattedDate).isEqualTo("Ontem");
+    }
+
+    @Test
+    @DisplayName("Deve retornar a data formatada como X dias atrás")
+    void shouldReturnFormattedDateAtTodayAsDayAgo() {
+        String formattedDate = DateUtils.formattedDaysAgo(LocalDateTime.now().minusDays(2));
+        Assertions.assertThat(formattedDate).isEqualTo("2 dias atrás");
+    }
+
+    @Test
     @DisplayName("Deve retornar a data no formato dd/MM/yyyy")
     void shouldReturnFormattedDate() {
         LocalDateTime actualDate = LocalDateTime.of(2025, Month.FEBRUARY, 6, 0, 0);
         String formattedDate = DateUtils.convertToDayMonthYear(actualDate);
-//        Assertions.assertEquals("06/02/2025", formattedDate);
-        Assertions.assertThat(formattedDate).isEqualTo(formattedDate);
+        Assertions.assertThat(formattedDate).isEqualTo("06/02/2025");
     }
 
     @Test
@@ -31,7 +50,6 @@ public class DateUtilsTest {
         long formatted2DaysAgo = DateUtils.daysFromNow(twoDaysAgo);
         long formatted11DaysAgo = DateUtils.daysFromNow(elevenDaysAgo);
 
-//        Assertions.assertEquals(2, formattedDaysAgo);
         Assertions.assertThat(formatted2DaysAgo).isEqualTo(2L);
         Assertions.assertThat(formatted11DaysAgo).isEqualTo(11L);
     }

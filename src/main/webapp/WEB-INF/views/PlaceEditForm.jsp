@@ -3,16 +3,18 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <head>
-    <title>Página de Cadastro de Local</title>
+    <title>Página de Edição de Local</title>
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 
 <div class="place-form-container">
     <a href="/places">Voltar</a>
 
-    <h1>Cadastre o Local</h1>
+    <h1>Edite o Local</h1>
 
-    <form:form modelAttribute="placeCreateDTO" method="post" action="/places/create" class="form-container">
+    <form:form modelAttribute="placeEditDTO" method="post" action="/places/update" class="form-container">
+
+        <form:input path="id" style="display: none" />
 
         <label>Nome<span class="form-required">*</span>:</label>
         <form:errors path="name" class="form-error" />
@@ -34,7 +36,7 @@
         <form:input path="city" class="form-input" />
         <br/>
 
-        <form:button type="submit" class="form-button">CADASTRAR</form:button>
+        <form:button type="submit" class="form-button">EDITAR</form:button>
 
     </form:form>
 </div>
