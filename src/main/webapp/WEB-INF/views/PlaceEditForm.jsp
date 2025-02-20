@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <head>
     <title>Página de Edição de Local</title>
@@ -11,6 +12,15 @@
     <a href="/places">Voltar</a>
 
     <h1>Edite o Local</h1>
+
+    <c:forEach var="status" items="${statusList}">
+        <p class="form-error">
+            <strong>
+                    ${status.name()}:
+            </strong>
+                ${status.error()}
+        </p>
+    </c:forEach>
 
     <form:form modelAttribute="placeEditDTO" method="post" action="/places/update" class="form-container">
 

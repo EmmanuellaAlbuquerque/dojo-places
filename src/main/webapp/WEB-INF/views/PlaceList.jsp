@@ -18,7 +18,7 @@
     <a href="/places/new">Crie um novo Local</a>
 
     <c:if test="${not empty places}">
-        <c:forEach items="${places}" var="place">
+        <c:forEach var="place" items="${places}">
             <hr/>
 
             <li style="list-style: none; padding: 1rem">

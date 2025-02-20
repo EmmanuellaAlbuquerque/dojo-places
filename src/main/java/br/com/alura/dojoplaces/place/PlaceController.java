@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("places")
@@ -38,8 +40,18 @@ public class PlaceController {
     }
 
     @PostMapping("/create")
-    public String createPlace(@Valid PlaceCreateDTO placeCreateDTO, BindingResult bindingResult) {
+    public String createPlace(@Valid PlaceCreateDTO placeCreateDTO, BindingResult bindingResult, Model model) {
+        List<statusDTO> errors = new ArrayList<>();
+
         if (bindingResult.hasErrors()) {
+            return "/PlaceCreateForm";
+        }
+
+        Optional<Place> duplicatedCodeForPlace = placeRepository.findByCode(placeCreateDTO.code());
+
+        if (duplicatedCodeForPlace.isPresent()) {
+            errors.add(new statusDTO("Código", "O código já está em uso!"));
+            model.addAttribute("statusList", errors);
             return "/PlaceCreateForm";
         }
 
@@ -59,9 +71,19 @@ public class PlaceController {
 
     @Transactional
     @PostMapping("/update")
-    public String updatePlace(@Valid PlaceEditDTO placeEditDTO, BindingResult bindingResult) {
+    public String updatePlace(@Valid PlaceEditDTO placeEditDTO, BindingResult bindingResult, Model model) {
+
+        List<statusDTO> errors = new ArrayList<>();
 
         if (bindingResult.hasErrors()) {
+            return "/PlaceEditForm";
+        }
+
+        Optional<Place> duplicatedCodeForPlace = placeRepository.findByCode(placeEditDTO.code());
+
+        if (duplicatedCodeForPlace.isPresent()) {
+            errors.add(new statusDTO("Código", "O código já está em uso!"));
+            model.addAttribute("statusList", errors);
             return "/PlaceEditForm";
         }
 

@@ -1,9 +1,6 @@
 package br.com.alura.dojoplaces.place;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -14,12 +11,21 @@ public class Place {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
+
+    @Column(unique = true)
     private String code;
+
+    @Column(nullable = false)
     private String neighborhood;
+
+    @Column(nullable = false)
     private String city;
 
+    @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+
     private LocalDateTime updatedAt;
 
     public Place() {
