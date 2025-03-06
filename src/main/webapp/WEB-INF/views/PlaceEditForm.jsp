@@ -13,15 +13,6 @@
 
     <h1>Edite o Local</h1>
 
-    <c:forEach var="status" items="${statusList}">
-        <p class="form-error">
-            <strong>
-                    ${status.name()}:
-            </strong>
-                ${status.error()}
-        </p>
-    </c:forEach>
-
     <form:form modelAttribute="placeEditDTO" method="post" action="/places/update" class="form-container">
 
         <form:input path="id" style="display: none" />

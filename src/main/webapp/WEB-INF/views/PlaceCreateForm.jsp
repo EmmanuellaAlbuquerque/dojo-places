@@ -13,15 +13,6 @@
 
     <h1>Cadastre o Local</h1>
 
-    <c:forEach var="status" items="${statusList}">
-        <p class="form-error">
-            <strong>
-                    ${status.name()}:
-            </strong>
-                ${status.error()}
-        </p>
-    </c:forEach>
-
     <form:form modelAttribute="placeCreateDTO" method="post" action="/places/create" class="form-container">
 
         <label>Nome<span class="form-required">*</span>:</label>
