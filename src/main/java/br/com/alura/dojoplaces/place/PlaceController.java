@@ -81,7 +81,7 @@ public class PlaceController {
 
         Optional<Place> duplicatedCodeForPlace = placeRepository.findByCode(placeEditDTO.code());
 
-        if (duplicatedCodeForPlace.isPresent()) {
+        if (duplicatedCodeForPlace.isPresent() && duplicatedCodeForPlace.get().getId() != placeEditDTO.id()) {
             errors.add(new statusDTO("Código", "O código já está em uso!"));
             model.addAttribute("statusList", errors);
             return "/PlaceEditForm";
