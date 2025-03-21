@@ -4,8 +4,10 @@
   Date: 23/01/2025
   Time: 15:59
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <html>
 <head>
@@ -51,6 +53,10 @@
                     <strong>Data de Atualização</strong>:
                     ${place.updatedAt()}
                 </p>
+
+                <form action="/places/${place.id()}/delete" method="post">
+                    <button type="submit">DELETAR</button>
+                </form>
             </li>
         </c:forEach>
     </c:if>
