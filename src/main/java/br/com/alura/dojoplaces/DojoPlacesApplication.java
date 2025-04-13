@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @SpringBootApplication
 public class DojoPlacesApplication {
 
-    @GetMapping("/oi")
-    public String oi() {
-        return "/oi";
+    @GetMapping
+    public String home() {
+        return "redirect:places";
     }
 
     public static void main(String[] args) {
