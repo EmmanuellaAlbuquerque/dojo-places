@@ -26,7 +26,7 @@ public class PlaceCreateDTOValidatorTest {
     @Test
     @DisplayName("Should return an error if there is an place with same code")
     void should_return_an_error_if_there_is_an_place_with_same_code() {
-        PlaceCreateDTO placeCreateDTO = new PlaceCreateDTO("Leblon", "leblon", "centro", "cajazeiras");
+        PlaceCreateDTO placeCreateDTO = new PlaceCreateDTO("Leblon", "leblon", "", "centro", "cajazeiras");
 
         Errors errors = new BeanPropertyBindingResult(placeCreateDTO, "placeCreateDTO");
 
@@ -45,7 +45,7 @@ public class PlaceCreateDTOValidatorTest {
     @Test
     @DisplayName("Should return no error if the code for the place does not exist")
     void should_return_no_error_if_the_code_for_the_place_does_not_exist() {
-        PlaceCreateDTO placeCreateDTO = new PlaceCreateDTO("Leblon", "leblon", "centro", "cajazeiras");
+        PlaceCreateDTO placeCreateDTO = new PlaceCreateDTO("Leblon", "leblon", "", "centro", "cajazeiras");
 
         Errors errors = new BeanPropertyBindingResult(placeCreateDTO, "placeCreateDTO");
 

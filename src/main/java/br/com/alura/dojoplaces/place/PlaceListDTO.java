@@ -20,7 +20,7 @@ public record PlaceListDTO (
                 place.getNeighborhood(),
                 place.getCity(),
                 convertToDayMonthYear(place.getCreatedAt()),
-                place.getUpdatedAt() != null ? formattedDaysAgo(place.getUpdatedAt()) : "Não atualizado"
+                place.getUpdatedAt() != null ? formattedDaysAgo(place.getUpdatedAt()) : "-"
         );
     }
 }

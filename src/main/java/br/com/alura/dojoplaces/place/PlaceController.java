@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -49,13 +50,14 @@ public class PlaceController {
     }
 
     @PostMapping("/create")
-    public String createPlace(@Valid PlaceCreateDTO placeCreateDTO, BindingResult bindingResult, Model model) {
+    public String createPlace(@Valid PlaceCreateDTO placeCreateDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
             return "/PlaceCreateForm";
         }
 
         placeRepository.save(new Place(placeCreateDTO));
+        redirectAttributes.addFlashAttribute("successAlert", "Local criado com sucesso!");
         return "redirect:/places";
     }
 
@@ -71,7 +73,7 @@ public class PlaceController {
 
     @Transactional
     @PostMapping("/update")
-    public String updatePlace(@Valid PlaceEditDTO placeEditDTO, BindingResult bindingResult, Model model) {
+    public String updatePlace(@Valid PlaceEditDTO placeEditDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
             return "/PlaceEditForm";
@@ -80,6 +82,7 @@ public class PlaceController {
         Place place = placeRepository.findById(placeEditDTO.id()).orElseThrow(NotFoundException::new);
         place.edit(placeEditDTO);
 
+        redirectAttributes.addFlashAttribute("successAlert", "Local editado com sucesso!");
         return "redirect:/places";
     }
 

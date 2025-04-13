@@ -1,5 +1,6 @@
 package br.com.alura.dojoplaces.place;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -17,6 +18,9 @@ public record PlaceEditDTO(
         @Pattern(regexp = "^[a-zA-Z0-9-]*$", message = "O Código não pode ter caracteres especiais e nem espaço")
         String code,
 
+        @Nullable
+        String cep,
+
         @NotBlank(message = "O Bairro é obrigatório")
         @Size(max = 100)
         String neighborhood,
@@ -30,6 +34,7 @@ public record PlaceEditDTO(
         return new PlaceEditDTO(
                 place.getId(),
                 place.getName(),
+                place.getCode(),
                 place.getCode(),
                 place.getNeighborhood(),
                 place.getCity()

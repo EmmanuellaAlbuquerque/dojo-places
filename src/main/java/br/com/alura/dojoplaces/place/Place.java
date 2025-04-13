@@ -17,6 +17,9 @@ public class Place {
     @Column(unique = true)
     private String code;
 
+    @Column(nullable = true)
+    private String cep;
+
     @Column(nullable = false)
     private String neighborhood;
 
@@ -37,6 +40,7 @@ public class Place {
         this.code = place.code();
         this.neighborhood = place.neighborhood();
         this.city = place.city();
+        this.cep = place.cep();
     }
 
     public Long getId() {
@@ -93,6 +97,14 @@ public class Place {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
     public void edit(PlaceEditDTO placeEditDTO) {

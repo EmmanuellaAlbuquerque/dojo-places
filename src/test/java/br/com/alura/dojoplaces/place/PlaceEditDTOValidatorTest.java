@@ -26,7 +26,7 @@ public class PlaceEditDTOValidatorTest {
     @Test
     @DisplayName("Should return an error if there is an place with same code")
     void should_return_an_error_if_there_is_an_place_with_same_code() {
-        PlaceEditDTO placeEditDTO = new PlaceEditDTO(2L, "Leblon", "leblon", "centro", "cajazeiras");
+        PlaceEditDTO placeEditDTO = new PlaceEditDTO(2L, "Leblon", "leblon", "", "centro", "cajazeiras");
         Errors errors = new BeanPropertyBindingResult(placeEditDTO, "placeEditDTO");
 
         when(placeRepository.existsByCodeAndIdNot(placeEditDTO.code(), placeEditDTO.id())).thenReturn(true);
@@ -44,7 +44,7 @@ public class PlaceEditDTOValidatorTest {
     @Test
     @DisplayName("Should return no error if the code for the place does not exist")
     void should_return_no_error_if_the_code_for_the_place_does_not_exist() {
-        PlaceEditDTO placeEditDTO = new PlaceEditDTO(1L, "Leblon", "leblon", "centro", "cajazeiras");
+        PlaceEditDTO placeEditDTO = new PlaceEditDTO(1L, "Leblon", "leblon", "", "centro", "cajazeiras");
         Errors errors = new BeanPropertyBindingResult(placeEditDTO, "placeEditDTO");
 
         when(placeRepository.existsByCodeAndIdNot(placeEditDTO.code(), placeEditDTO.id())).thenReturn(false);
