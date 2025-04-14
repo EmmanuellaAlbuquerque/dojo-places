@@ -35,7 +35,7 @@ public record PlaceEditDTO(
                 place.getId(),
                 place.getName(),
                 place.getCode(),
-                place.getCode(),
+                place.getCep(),
                 place.getNeighborhood(),
                 place.getCity()
         );

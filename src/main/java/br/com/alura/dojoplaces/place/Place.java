@@ -110,6 +110,7 @@ public class Place {
     public void edit(PlaceEditDTO placeEditDTO) {
         this.name = placeEditDTO.name();
         this.code = placeEditDTO.code();
+        this.cep = placeEditDTO.cep();
         this.neighborhood = placeEditDTO.neighborhood();
         this.city = placeEditDTO.city();
         this.updatedAt = LocalDateTime.now();

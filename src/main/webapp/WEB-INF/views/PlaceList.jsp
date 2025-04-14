@@ -39,6 +39,10 @@
                                     <h6 class="card-subtitle mb-2 text-body-secondary">Código: ${place.code()}</h6>
                                     <p class="card-text">
                                     <p>
+                                        <strong>Cep</strong>:
+                                            ${place.cep()}
+                                    </p>
+                                    <p>
                                         <strong>Bairro</strong>:
                                             ${place.neighborhood()}
                                     </p>
